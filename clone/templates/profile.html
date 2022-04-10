@@ -1,0 +1,59 @@
+{% extends 'base.html' %} 
+{% load bootstrap4 %} 
+{% block content %}
+
+
+<div class="container">
+ <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+   <div class="card">
+    <div class="card-header">
+     <b>{{user.username}}'</b>s Profile
+     {% if user.Profile.profile_pic %}
+     <img src=" {{user.Profile.profile_pic}} " alt="Profile picture"> {% else %}
+     {%endif%}
+    </div>
+    <div class="card-body">
+     <h4><b>Username: {{user.username}}</b></h4>
+     <h5><b>bio</b></h5>
+     {% if user.profile.bio %}
+     <b>Bio:</b> {{user.profile.bio}}
+     {% else %}
+     <p style="text-align: center;">You have no bio </p>
+
+     {% endif %}</p>
+     <a href="/updateprofile" class="btn btn-primary">Update Profile</a>
+    </div>
+   </div>
+
+   <h2 style="text-align:center">
+   <b>My Projects</b>
+   </h2>
+
+   {% for project in all_projects %}
+   
+   <div class="card">
+    <div class="card-header">
+     {{project.title}}
+    </div>
+    <div class="card-body">
+     <img src="{{project.image.url}}" alt="{{post.name}}">
+    </div>
+    <div class="desc">
+     <p>{{project.description}}</p>
+    </div>
+    <div class="card-footer">
+     <a href=" {{project.link}} "> {{project.link}} </a>
+     <div class="comment">
+      <a href="{%url 'comment' project.id%}" class="btn btn-primary">Review</a>
+     </div>
+    </div>
+   </div>
+   {% endfor %}
+
+  </div>
+  <div class="col-md-4"></div>
+ </div>
+</div>
+{% endblock %}

@@ -8,4 +8,6 @@ urlpatterns=[
    path('updateprofile/',views.update_profile,name='updateprofile'),
    path('newproject/',views.new_project,name='newproject'),
    path('comment/<int:id>/',views.comment,name='comment'),
+  path('project/',views.project,name='project'),
+
 ]

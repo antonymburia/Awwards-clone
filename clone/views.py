@@ -12,13 +12,9 @@ def home(request):
 
 @login_required(login_url = '/accounts/login/')
 def profile(request):
-
-    all_projects = Project.objects.filter(user = request.user)
-    return render(request,'profile.html',{'all_projects':all_projects})
-
-@login_required(login_url = '/accounts/login/')
-def update_profile(request):
     user = request.user
+    all_projects = Project.objects.filter(user = user)
+    
     if request.method == 'POST':
         form = UpdateProfileForm(request.POST,request.FILES)
         if form.is_valid():
@@ -29,7 +25,10 @@ def update_profile(request):
 
     else:
         form = UpdateProfileForm(request.POST,request.FILES)
-    return render(request,'update_profile.html',{'form':form})
+    
+    return render(request,'profile.html',{'all_projects':all_projects, 'form':form})
+
+
 @login_required(login_url = '/accounts/login/')
 def new_project(request):
     if request.method=='POST':
@@ -96,6 +95,33 @@ def project(request,id):
 
         return render(request,'project.html',{'project':project,'comments':comments,'design':design,'usability':usability,'content':content})
 
+
+@login_required(login_url = '/accounts/login/')
+def rate(request,id):
+    if request.method =='POST':
+        ratings = Rating.objects.filter(id = id)
+        for rating in ratings:
+            if rating.user == request.user:
+                messages.info(request,'You can only rate once')
+                return redirect(project,id)
+        design = request.POST.get('design')
+        usability = request.POST.get('usability')
+        content = request.POST.get('content')
+
+        if design and usability and content:
+            project = Project.objects.get(id = id)
+            rating = Rating(design = design,usability = usability,content = content,project_id = project,user = request.user)
+            rating.save()
+            return redirect(project,id)
+
+        else:
+            messages.info(request,'enter required fields')
+            return redirect(project,id)
+
+
+    else:
+        messages.info(request,'enter required fields')
+        return redirect(project,id)
 
 
 def logoutUser(request):

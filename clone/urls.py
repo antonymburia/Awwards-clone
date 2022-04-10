@@ -4,5 +4,8 @@ from . import views
 urlpatterns=[
    path('',views.home, name='home'),
    path('logout/', views.logoutUser, name='logout'),
-   path('updateprofile/$',views.update_profile,name='editprofile'),
+   path('profile/',views.profile,name = 'profile'),
+   path('updateprofile/',views.update_profile,name='updateprofile'),
+   path('newproject/',views.new_project,name='newproject'),
+   path('comment/<int:id>/',views.comment,name='comment'),
 ]

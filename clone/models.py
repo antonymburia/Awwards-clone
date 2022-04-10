@@ -1,5 +1,5 @@
-from django.db import models
 from __future__ import unicode_literals
+from django.db import models
 from tinymce.models import HTMLField
 from cloudinary.models import CloudinaryField
 from django.db import models

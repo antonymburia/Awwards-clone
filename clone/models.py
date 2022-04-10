@@ -12,7 +12,7 @@ class Profile(models.Model):
     profile_pic = CloudinaryField('image')
     bio = models.TextField(max_length=1000)
     about = models.TextField(max_length=5000)
-
+    
     def __str__(self):
         return self.username
 
@@ -22,7 +22,7 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
-class Projects(models.Model):
+class Project(models.Model):
     title = models.CharField(max_length=500)
     image=CloudinaryField('image')
     description=models.TextField(max_length=2000)
@@ -56,16 +56,16 @@ class Projects(models.Model):
         return searched_project
 
 
-class Ratings(models.Model):
+class Rating(models.Model):
     design = models.IntegerField(default=1)
     content = models.IntegerField(default=1)
     usability = models.IntegerField(default=1)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    project_id = models.ForeignKey(Projects,on_delete=models.CASCADE)
+    project_id = models.ForeignKey(Project,on_delete=models.CASCADE)
     
 
-class Comments(models.Model):
-    project_id = models.ForeignKey(Projects,on_delete=models.CASCADE)
+class Comment(models.Model):
+    project_id = models.ForeignKey(Project,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     text = models.CharField(max_length=1000)
 

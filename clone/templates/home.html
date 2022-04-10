@@ -11,6 +11,29 @@
  <div class="landing">
 
  </div>
+ <div class="categories">
+  <h3><b>Categories</b></h3>
+ </div>
+
+ <!-- projects -->
+<div class="container">
+ <div class="projects">
+  <div class="row">
+   {% for project in all_projects %}
+   <div class="col-md-3">
+    <div class="card">
+     <div class="card-body">
+      <img src="{{project.image.url}}" alt="">
+     </div>
+     <div class="card-footer">
+      
+     </div>
+    </div>
+   </div>
+   {%endfor%}
+  </div>
+ </div>
+</div>
 </div>
 <style>
  .landing {
@@ -18,7 +41,8 @@
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 500px
+  height: 500px;
+  width: 100%;
 }
 </style>
 {%endblock%}

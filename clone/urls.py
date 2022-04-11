@@ -11,7 +11,7 @@ urlpatterns=[
    path('comment/<int:id>/',views.comment,name='comment'),
    path('project/',views.project,name='project'),
    path('projects/', ProjectList.as_view()),
-   path('profile/<int:pk>', ProfileList.as_view()),
+   path('profiles/', ProfileList.as_view()),
 
 
 ]

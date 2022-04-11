@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'clone.apps.CloneConfig',
     'cloudinary',
+    'rest_framework'
     
 ]
 

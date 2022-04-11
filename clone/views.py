@@ -108,7 +108,7 @@ def rate(request,id):
         for rating in ratings:
             if rating.user == request.user:
                 messages.info(request,'You can only rate once')
-                return redirect(project,id)
+                return redirect('project',id)
         design = request.POST.get('design')
         usability = request.POST.get('usability')
         content = request.POST.get('content')
@@ -117,11 +117,11 @@ def rate(request,id):
             project = Project.objects.get(id = id)
             rating = Rating(design = design,usability = usability,content = content,project_id = project,user = request.user)
             rating.save()
-            return redirect(project,id)
+            return redirect('project',id)
 
         else:
             messages.info(request,'enter required fields')
-            return redirect(project,id)
+            return redirect('project',id)
 
 
     else:

@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout
 from .forms import UpdateProfileForm,NewProjectForm,CommentForm
 from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import ProfileSerializer,ProjectSerializer
+
 # Create your views here.
 def home(request):
 
@@ -123,6 +127,18 @@ def rate(request,id):
         messages.info(request,'enter required fields')
         return redirect(project,id)
 
+
+class ProfileList(APIView):
+    def get(self,request):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles,many = True)
+        return Response(serializers.data)
+
+class ProjectList(APIView):
+    def get(self,request):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects,many = True)
+        return Response(serializers.data)
 
 def logoutUser(request):
  logout(request)

@@ -9,7 +9,7 @@ urlpatterns=[
    # path('updateprofile/',views.update_profile,name='updateprofile'),
    path('newproject/',views.new_project,name='newproject'),
    path('comment/<int:id>/',views.comment,name='comment'),
-   path('project/',views.project,name='project'),
+   path('project/<int:id>/',views.project,name='project'),
    path('projects/', ProjectList.as_view()),
    path('profiles/', ProfileList.as_view()),
    path('ratings/<int:id>/',views.rate,name='ratings'),

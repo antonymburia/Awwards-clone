@@ -102,6 +102,7 @@ def project(request,id):
 
 @login_required(login_url = '/accounts/login/')
 def rate(request,id):
+    id=id
     if request.method =='POST':
         ratings = Rating.objects.filter(id = id)
         for rating in ratings:

@@ -8,6 +8,7 @@ urlpatterns = [
     path('',include('clone.urls')),
     path('accounts/', include('registration.backends.simple.urls')),
     path('tinymce/', include('tinymce.urls')),
+
     
 
 ]

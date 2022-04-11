@@ -69,8 +69,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
     text = models.CharField(max_length=1000)
 
-    def __str__(self):
-        return self.user
+    # def __str__(self):
+    #     return self.user
 
 
     @classmethod

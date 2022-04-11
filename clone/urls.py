@@ -12,6 +12,6 @@ urlpatterns=[
    path('project/',views.project,name='project'),
    path('projects/', ProjectList.as_view()),
    path('profiles/', ProfileList.as_view()),
-
+   path('ratings/<int:id>/',views.rate,name='ratings'),
 
 ]

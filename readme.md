@@ -4,7 +4,8 @@
 ## Author
 Antony Mburia Gakono
 
-## Description Awwwards clone is an app where users can view and rate submitted projects based. they can also submit projects for rating
+## Description 
+Awwwards clone is an app where users can view and rate submitted projects based. they can also submit projects for rating
 ## Setup/ Installation Requirements
 The application requires the following installations to run
 * python3.8

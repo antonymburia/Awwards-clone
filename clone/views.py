@@ -59,12 +59,12 @@ def comment(request,id):
             project = Project.objects.get(id = id)
             comment.project_id = project
             comment.save()
-            return redirect('home')
+            return redirect('project',id)
 
         else:
             project_id = id
             messages.info(request,'fill all fields')
-            return redirect('comment',id = project_id)
+            return redirect('project',id)
 
     else:
         id = id
@@ -143,7 +143,7 @@ class ProjectList(APIView):
 
 def logoutUser(request):
  logout(request)
- return redirect(home)
+ return redirect('home')
 
 
 
